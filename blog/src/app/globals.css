@@ -61,6 +61,10 @@ body::before {
   transform: rotate(-30deg);
 }
 
+.ray:nth-child(6) {
+  transform: rotate(-5deg);
+}
+
 .light-source {
   position: absolute;
   bottom: -5px;
