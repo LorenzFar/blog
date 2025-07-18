@@ -10,7 +10,6 @@ export default function RootLayout({ children }) {
             <div className="ray"></div>
             <div className="ray"></div>
             <div className="ray"></div>
-            <div className="ray"></div>
             <div className="light-source"></div>
         </div>
           {children}
