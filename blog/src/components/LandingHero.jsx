@@ -1,11 +1,17 @@
+"use client"
+
+import { useRef } from "react";
+import { useInView } from "motion/react";
 import ImageHero from "@/components/ImageHero.jsx";
+import Logo from "@/components/Logo.jsx";
 
 export default function LandingHero() {
+  const heroRef = useRef(null);
+  const isHeroInView = useInView(heroRef);
+
   return (
     <div className="grid min-h-screen place-items-center">
-      <div className="w-3/6">
-        <div className="grid grid-rows-8 grid-cols-13 gap-4">
-          
+        <div ref={heroRef} className=" w-3/6 grid grid-rows-8 grid-cols-13 gap-4">
           <ImageHero
             title="SINNERS"
             imageURL="/Sinners.png"
@@ -37,10 +43,8 @@ export default function LandingHero() {
           />
 
           {/* Logo (no overlay) */}
-          <img src="/Logo.svg" alt="Your Logo" className="w-full h-full row-start-4 col-start-11 col-span-3" />
-        
+          <Logo isHeroInView={isHeroInView}/>
         </div>
-      </div>
     </div>
   );
 }
