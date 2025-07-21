@@ -11,7 +11,7 @@ export default function LandingHero() {
 
   return (
     <div className="grid min-h-screen place-items-center">
-        <div ref={heroRef} className=" w-3/6 grid grid-rows-8 grid-cols-13 gap-4">
+        <div ref={heroRef} className=" w-2/3 grid grid-rows-8 grid-cols-13 gap-4">
           <ImageHero
             title="SINNERS"
             imageURL="/Sinners.png"

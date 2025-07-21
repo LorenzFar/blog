@@ -8,7 +8,7 @@ export default function ImageHero({ title, imageURL, className = '' }) {
 
       {/* Text with flexible positioning */}
       <div className="absolute inset-0 flex place-items-center justify-start p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <p className="text-white font-black text-[1vw]">
+        <p className="text-white font-black text-[1.2vw]">
             {title}
         </p>
       </div>
