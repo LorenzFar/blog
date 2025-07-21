@@ -11,7 +11,7 @@ export default function GameDisplay() {
     offset: ["start end", "end start"],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.03]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.5], { clamp: true });
 
   return (
     <div className="relative inline-block">
@@ -25,6 +25,13 @@ export default function GameDisplay() {
         style={{ scale }}
         className="rounded-lg"
         alt="Game Image"
+      />
+
+      <div className="absolute left-1/2 bottom-[5.5rem] -translate-x-1/2 w-[12vw] h-[1vw] bg-gradient-to-b from-purple-500/40 to-transparent blur-3xl z-0" />
+
+      <img
+        src="/PS.png"
+        className="absolute left-1/2 bottom-15 -translate-x-1/2 w-[12vw]"
       />
     </div>
   );
