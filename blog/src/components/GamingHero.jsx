@@ -40,25 +40,20 @@ export default function LandingHero() {
           )}
         </AnimatePresence>
 
-        {/* Image Block */}
+        {/* Gaming Content */}
         <div className="relative">
+
           <motion.img
             ref={imageRef}
             src="/ITT.jpg"
-            className="rounded-lg"
+            className="w-full h-auto rounded-lg"
             alt="Game Image"
           />
 
-          <img
-            src="/ITTlogo.png"
-            className="absolute w-1/4 z-50 -translate-y-1/2"
-            style={{ top: "50%", left: "20vw" }}
-            alt="Logo"
-          />
-
-          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-50 rounded-lg" />
-
+          {/* Overlay (Grid Content on top of image) */}
           <GameContent />
+
+          <div className="absolute inset-0 bg-black opacity-35 rounded-lg" />
         </div>
       </motion.div>
     </div>
