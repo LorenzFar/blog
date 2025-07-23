@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export default function Logo({ isHeroInView }) {
   if (isHeroInView === null || isHeroInView === undefined) {
