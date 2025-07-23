@@ -2,7 +2,7 @@
 
 import GameContent from "./GameContent";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export default function LandingHero() {
   const containerRef = useRef(null);
@@ -18,6 +18,23 @@ export default function LandingHero() {
   });
 
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.7], { clamp: true });
+
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    let timeout;
+
+    if (isImageInView) {
+      timeout = setTimeout(() => {
+        setShowContent(true);
+      }, 1000);
+    } else {
+      setShowContent(false);
+      clearTimeout(timeout);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [isImageInView]);
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -51,9 +68,21 @@ export default function LandingHero() {
           />
 
           {/* Overlay (Grid Content on top of image) */}
-          <GameContent />
-
-          <div className="absolute inset-0 bg-black opacity-35 rounded-lg" />
+          {showContent && (
+            <motion.div
+              key="game-content"
+              className="absolute inset-0"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.8 }}
+            >
+              <GameContent />
+              
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-black opacity-35 rounded-lg" />
+            </motion.div>
+          )}
         </div>
       </motion.div>
     </div>
