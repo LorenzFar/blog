@@ -1,19 +1,18 @@
+
+import GameOverlay from "./GameOverlay";
 import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, animate } from "motion/react";
 
-export default function GameCarousel({ref}) {
+
+export default function GameCarousel( {isImageInView} ) {
   const images = ["/ITT.jpg", "/F4.jpeg", "/F1.jpg", "JWR.jpg"];
   const carousel = useRef(null);
   const x = useMotionValue(0);
   const imageWidth = useRef(0); 
   const [maxDrag, setMaxDrag] = useState(0);
 
-  // Forward the internal carousel DOM to parent via ref
-  useEffect(() => {
-    if (ref && typeof ref === "object" && ref.current !== undefined) {
-      ref.current = carousel.current;
-    }
-  }, [ref]);
+  //Keep Track of visible slide
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     if (carousel.current) {
@@ -26,6 +25,7 @@ export default function GameCarousel({ref}) {
     const rawX = x.get();
     const snappedIndex = Math.round(-rawX / imageWidth.current);
     const clampIndex = Math.max(0, snappedIndex);
+    setActiveIndex(clampIndex); //Set Active index of center slide
     const targetX = -clampIndex * imageWidth.current;
     animate(x, targetX, { type: "spring", stiffness: 300, damping: 30 });
   };
@@ -40,12 +40,14 @@ export default function GameCarousel({ref}) {
         className="flex"
       >
         {images.map((image, index) => (
-          <motion.div className="min-w-full" key={index}>
+          <motion.div className="relative min-w-full" key={index}>
             <img
-              className="w-full h-full object-cover  rounded-lg pointer-events-none"
+              className="w-full h-full object-cover rounded-lg pointer-events-none"
               src={image}
               alt={`Slide ${index}`}
             />
+
+            <GameOverlay isActive={index === activeIndex} index={index} />
           </motion.div>
         ))}
       </motion.div>
