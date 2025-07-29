@@ -2,6 +2,7 @@
 import GameOverlay from "./GameOverlay";
 import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, animate } from "motion/react";
+import CarouselTabs from "./CarouselTabs";
 
 
 export default function GameCarousel( {isImageInView} ) {
@@ -51,6 +52,8 @@ export default function GameCarousel( {isImageInView} ) {
           </motion.div>
         ))}
       </motion.div>
+      
+      <CarouselTabs imagesLength={images.length} activeIndex={activeIndex}/>
     </motion.div>
   );
 }
