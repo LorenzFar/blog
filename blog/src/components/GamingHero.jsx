@@ -1,6 +1,7 @@
 "use client";
 
 import GameContent from "./GameContent";
+import GameCarousel from "./GameCarousel";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 
@@ -60,12 +61,7 @@ export default function LandingHero() {
         {/* Gaming Content */}
         <div className="relative">
 
-          <motion.img
-            ref={imageRef}
-            src="/ITT.jpg"
-            className="w-full h-auto rounded-lg"
-            alt="Game Image"
-          />
+          <GameCarousel ref={imageRef}/>
 
           {/* Overlay (Grid Content on top of image) */}
           {showContent && (
