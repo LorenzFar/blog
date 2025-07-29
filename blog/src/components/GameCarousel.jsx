@@ -6,7 +6,7 @@ import CarouselTabs from "./CarouselTabs";
 
 
 export default function GameCarousel( {isImageInView} ) {
-  const images = ["/ITT.jpg", "/F4.jpeg", "/F1.jpg", "JWR.jpg"];
+  const images = ["/ITT.jpg", "/F4.jpeg", "/Superman.jpg", "JWR.jpg"];
   const carousel = useRef(null);
   const x = useMotionValue(0);
   const imageWidth = useRef(0); 

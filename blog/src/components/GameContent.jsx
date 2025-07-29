@@ -1,8 +1,11 @@
-export default function GameContent() {
+
+export default function GameContent({ slideIndex }) {
+    const logo = ["/ITTLogo.png", "/F4Logo.png", "/SupermanLogo.png", "JWRLogo.webp"];
+
     return (
         <div className="absolute inset-0 grid grid-cols-2 place-items-center z-10">
             <img
-              src="/ITTlogo.png"
+              src={logo[slideIndex]}
               className="w-1/2"
               alt="Logo"
             />
