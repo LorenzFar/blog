@@ -2,8 +2,8 @@
 
 import { useRef } from "react";
 import { useInView } from "motion/react";
-import ImageHero from "@/components/ImageHero.jsx";
-import Logo from "@/components/Logo.jsx";
+import ImageHero from "./ImageHero";
+import Logo from "../Logo";
 
 export default function LandingHero() {
   const heroRef = useRef(null);

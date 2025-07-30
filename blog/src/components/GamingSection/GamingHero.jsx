@@ -1,8 +1,8 @@
 "use client";
 
-import GameCarousel from "./GameCarousel";
+import GameCarousel from "../Carousel/GameCarousel";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "motion/react";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 
 export default function LandingHero() {
   const containerRef = useRef(null);

@@ -1,5 +1,5 @@
-import LandingHero from "@/components/LandingHero";
-import GamingHero from "@/components/GamingHero";
+import LandingHero from "@/components/LandingSection/LandingHero";
+import GamingHero from "@/components/GamingSection/GamingHero"
 
 export default function Home() {
   return (

@@ -1,8 +1,8 @@
 
-import GameOverlay from "./GameOverlay";
 import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, animate } from "motion/react";
 import CarouselTabs from "./CarouselTabs";
+import CarouselOverlay from "./CarouselOverlay";
 
 
 export default function GameCarousel( {isImageInView} ) {
@@ -48,7 +48,7 @@ export default function GameCarousel( {isImageInView} ) {
               alt={`Slide ${index}`}
             />
 
-            <GameOverlay isActive={index === activeIndex} index={index} />
+            <CarouselOverlay isActive={index === activeIndex} index={index} />
           </motion.div>
         ))}
       </motion.div>

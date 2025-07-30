@@ -1,5 +1,5 @@
 
-export default function GameContent({ slideIndex }) {
+export default function CarouselContent({ slideIndex }) {
     const logo = ["/ITTLogo.png", "/F4Logo.png", "/SupermanLogo.png", "JWRLogo.webp"];
 
     return (

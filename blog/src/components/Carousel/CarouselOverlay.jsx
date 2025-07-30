@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import GameContent from "./GameContent"; // Can be dynamic based on `index`
+import CarouselContent from "./CarouselContent";
 
-export default function GameOverlay({ isActive, index }) {
+export default function CarouselOverlay({ isActive, index }) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function GameOverlay({ isActive, index }) {
           transition={{ duration: 0.8 }}
         >
 
-          <GameContent slideIndex={index} />
+          <CarouselContent slideIndex={index} />
 
           <div className="absolute inset-0 bg-black/30 rounded-lg" />
         </motion.div>
