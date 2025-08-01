@@ -19,11 +19,10 @@ export default function LandingHero() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.7], { clamp: true });
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="h-screen overflow-hidden flex items-center">
       <motion.div
         ref={containerRef}
         style={{ scale }}
-        className="relative inline-block"
       >
         {/* Glow Effect */}
         <AnimatePresence>
