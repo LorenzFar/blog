@@ -23,44 +23,34 @@ export default function Slideshow() {
     }, []);
 
     return (
-        <div className="relative w-full z-40">
-            {/* 🔲 Fullscreen Overlay Inside the Carousel */}
-            <AnimatePresence>
-                {selectedIndex !== null && (
-                    <motion.div
-                        className="fixed inset-0 bg-black/70 z-20"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setSelectedIndex(null)}
-                    />
-                )}
-            </AnimatePresence>
+        
+        <motion.div ref={carousel} className="relative overflow-hidden w-full">
 
-            <motion.div ref={carousel} className="relative overflow-hidden w-full">
-                <motion.div
-                    drag="x"
-                    dragConstraints={{ left: -maxDrag, right: 0 }}
-                    className="flex pl-6 pr-6"
-                >
-                    {images.map((image, index) => (
+            <motion.div
+                drag="x"
+                dragConstraints={{ left: -maxDrag, right: 0 }}
+                className="relative flex pl-6 pr-6"
+            >
+                
+                {images.map((image, index) => {
+                    const isSelected = selectedIndex === index;
+                    const isBlurred = selectedIndex !== null && !isSelected;
+
+                    return (
                         <motion.div
                             key={index}
                             layout
                             transition={{ type: "spring", stiffness: 200, damping: 30 }}
-                            
-                            className={`flex-shrink-0 px-5 cursor-pointer overflow-hidden rounded-lg ${
-                                selectedIndex === index ? "z-50 w-[40vw]" : "w-[20vw]"
+                            className={`relative flex-shrink-0 px-5 overflow-hidden rounded-lg ${
+                                isSelected ? "z-50 w-[40vw]" : "w-[20vw]"
                             } h-[45vw]`}
-
-                            style={{ zIndex: selectedIndex === index ? 50 : 10, position: "relative" }}
                             onClick={() => {
-                                if (selectedIndex === index) return setSelectedIndex(null);
+                                if (isSelected) return setSelectedIndex(null);
                                 setSelectedIndex(index);
                             }}
                         >
                             <div
-                                className="h-full rounded-lg"
+                                className="relative h-full rounded-lg"
                                 style={{ width: `${imageWidth}px` }}
                             >
                                 <motion.img
@@ -68,13 +58,17 @@ export default function Slideshow() {
                                     src={image}
                                     alt={`Slide ${index}`}
                                     draggable="false"
-                                    className="h-full object-cover rounded-lg"
+                                    className="relative h-full object-cover rounded-lg"
+                                    animate={{
+                                        filter: isBlurred ? "blur(4px)" : "blur(0px)",
+                                    }}
+                                    transition={{ duration: 0.5, ease: "easeInOut" }}
                                 />
                             </div>
                         </motion.div>
-                    ))}
-                </motion.div>
+                    );
+                })}
             </motion.div>
-        </div>
+        </motion.div>
     );
 }
