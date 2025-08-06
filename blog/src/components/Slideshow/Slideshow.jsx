@@ -6,6 +6,7 @@ import SlideContent from "./SlideContent";
 export default function Slideshow() {
     const images = ["/ITT.jpg", "/F4.jpeg", "/Superman.jpg", "JWR.jpg", "F1.jpg"];
     const carousel = useRef(null);
+    const baseRef = useRef(null); //For precalculation of drag limit
     const [maxDrag, setMaxDrag] = useState(0);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [carouselWidth, setCarouselWidth] = useState(0);
@@ -18,40 +19,42 @@ export default function Slideshow() {
     const controls = useAnimation();
 
     useEffect(() => {
-        if(!isAnimating){
-            updateDragBounds();
+        // only measure once, when fully collapsed
+        if (baseRef.current === null && selectedIndex === null && carousel.current) {
+            const base = carousel.current.scrollWidth - carousel.current.offsetWidth + 40;
+            setCarouselWidth(carousel.current.offsetWidth);
+            baseRef.current = base;
         }
-    }, [isAnimating]);
 
-    const updateDragBounds = () => {
-        if (!carousel.current) return;
+        const vw = window.innerWidth / 100;
+        const extraOffset = 20 * vw;
+        const newMaxDrag = selectedIndex !== null
+            ? baseRef.current + extraOffset
+            : baseRef.current;
 
-        const scrollWidth = carousel.current.scrollWidth;
-        const offsetWidth = carousel.current.offsetWidth;
-        const RIGHT_PADDING = 40;
-
-        const newMaxDrag = scrollWidth - offsetWidth + RIGHT_PADDING;
-
-        setMaxDrag(newMaxDrag);
-        setCarouselWidth(offsetWidth);
-
-        console.log(newMaxDrag);
-        console.log(x.get());
-
-        const currentX = x.get();
-        if (currentX < -newMaxDrag) {
+        const currX = x.get();
+        if(currX < -newMaxDrag){
             controls.start({ 
                 x: -newMaxDrag, 
                 transition: { type: "tween", duration: 0.3, ease: "easeOut" } 
             });
         }
-    };
+        else if(currX > 0){
+            controls.start({ 
+                x: 0, 
+                transition: { type: "tween", duration: 0.3, ease: "easeOut" } 
+            });
+        }
+
+        setMaxDrag(newMaxDrag);
+    }, [selectedIndex]);
 
     return (
         
-        <motion.div ref={carousel} className="relative overflow-hidden w-full">
+        <motion.div className="relative overflow-hidden w-full">
 
             <motion.div
+                ref={carousel}
                 drag="x"
                 style={{ x }}
                 animate={controls}
