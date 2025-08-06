@@ -21,7 +21,8 @@ export default function Slideshow() {
     useEffect(() => {
         // only measure once, when fully collapsed
         if (baseRef.current === null && selectedIndex === null && carousel.current) {
-            const base = carousel.current.scrollWidth - carousel.current.offsetWidth + 40;
+            const IMAGE_PADDING_RIGHT = 40;
+            const base = carousel.current.scrollWidth - carousel.current.offsetWidth + IMAGE_PADDING_RIGHT;
             setCarouselWidth(carousel.current.offsetWidth);
             baseRef.current = base;
         }

@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 
 export default function SlideContent({ isSelected, slideIndex }) {
-    const logo = ["/ITTLogo.png", "/F4Logo.png", "/SupermanLogo.png", "JWRLogo.webp"];
+    const logo = ["/ITTLogo.png", "/F4Logo.png", "/SupermanLogo.png", "JWRLogo.webp", "F1Logo.webp"];
     if (!isSelected) return null;
 
     return (
