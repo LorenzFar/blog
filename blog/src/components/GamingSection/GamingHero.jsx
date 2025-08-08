@@ -16,14 +16,15 @@ export default function LandingHero() {
     offset: ["start end", "end start"],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.7], { clamp: true });
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8], { clamp: true });
 
   return (
-    <div className="h-screen overflow-hidden flex items-center">
+    <div className="h-screen overflow-hidden flex items-center justify-center">
       <motion.div
         ref={containerRef}
         style={{ scale }}
       >
+        <p className="text-white mb-5 font-black text-[2.5vw]">Top Reviewed Game</p>
         {/* Glow Effect */}
         <AnimatePresence>
           {isImageInView && (

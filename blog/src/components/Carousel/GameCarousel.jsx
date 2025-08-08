@@ -41,19 +41,18 @@ export default function GameCarousel( {isImageInView} ) {
         className="flex"
       >
         {images.map((image, index) => (
-          <motion.div className="relative min-w-full" key={index}>
+          <motion.div className="relative min-w-full aspect-video" key={index}>
             <img
               className="w-full h-full object-cover rounded-lg pointer-events-none"
               src={image}
               alt={`Slide ${index}`}
             />
-
             <CarouselOverlay isActive={index === activeIndex} index={index} />
           </motion.div>
         ))}
       </motion.div>
-      
-      <CarouselTabs imagesLength={images.length} activeIndex={activeIndex}/>
+
+      <CarouselTabs imagesLength={images.length} activeIndex={activeIndex} />
     </motion.div>
   );
 }
