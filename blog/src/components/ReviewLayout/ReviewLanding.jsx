@@ -1,3 +1,5 @@
+import Logo from "../Logo";
+
 export default function ReviewLanding() {
   return (
     <div className="grid h-screen place-items-center">
@@ -8,17 +10,18 @@ export default function ReviewLanding() {
         </div>
 
         <div className="row-start-3 row-span-3 col-start-1 col-span-4 z-10 flex items-center">
-          <p className="text-white text-[70px] font-black leading-tight">
+          <p className="text-white text-[6.5vw] font-black leading-tight">
             "Balancing Awe & Awk"
           </p>
         </div>
 
         <div className="row-start-5 row-span-2 col-start-6 col-span-3 flex items-end justify-end">
-          <p className="text-white text-[25px] font-black text-end">
+          <p className="text-white text-[2vw] font-black text-end">
             Jurassic World: Rebirth <br /> (2025)
           </p>
         </div>
 
+        <Logo isHeroInView={false}/>
       </div>
     </div>
   );
